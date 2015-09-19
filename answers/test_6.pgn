@@ -1,0 +1,8 @@
+[Site "NULL"]
+[White "A"]
+[Black "B"]
+[Result "1-0"]
+
+1. e3 Nf6 2. Bd3 d5 3. Bxh7 Nfd7 4. Bg8 Nb6 5. Bxf7+ Kd7 6. Qh5 d4 7. c4 dxc3
+8. Qd5+ Nxd5 9. Ke2 Nb6 10. Bh5 Ke6 11. Nxc3 N8d7 12. Bg4+ Kf7 13. Bf5 Ke8 14.
+Bg6# 1-0
