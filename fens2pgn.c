@@ -1,5 +1,5 @@
 /* fens2pgn - converts multiple FENs into single PGN file
- * Copyright (C) 2015 Paweł Zacharek
+ * Copyright (C) 2015-2016 Paweł Zacharek
  * 
  * -----------------------------------------------------------------------
  * This program is free software; you can redistribute it and/or modify
@@ -17,7 +17,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  * -----------------------------------------------------------------------
  * 
- * date: 2015-11-17
+ * date: 2016-02-10
  * compiling: gcc -std=gnu11 -o fens2pgn.elf fens2pgn.c
  */
 
@@ -29,7 +29,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define VERSION "0.6.2"
+#define VERSION "0.6.3"
 
 /* to store the longest hypothetical piece placement field in FEN:
  * "1r1k1b1r/p1n1q1p1/1p1n1p1p/P1p1p1P1/1P1p1P1P/B1P1P1K1/1N1P1N1R/R1Q2B1b" */
@@ -426,7 +426,7 @@ static inline void swap_pointers(void **pointer_1, void **pointer_2)
  * PAWN_PROMOTION - pawn promotion
  * PAWN_CAPTURE_PROMOTION - pawn capture with promotion
  * INVALID_MOVE - invalid move */
-int what_to_write(const char (*Board)[8], const struct field *Field, const struct field *Previous_Field, char en_passant_field[], bool validate, char whose_move, char castling_prospects[])
+enum move_type what_to_write(const char (*Board)[8], const struct field *Field, const struct field *Previous_Field, char en_passant_field[], bool validate, char whose_move, char castling_prospects[])
 {
 	bool is_other = 0, in_line = 0, in_column = 0;
 	char piece = Field->piece_after;
@@ -518,7 +518,7 @@ int what_to_write(const char (*Board)[8], const struct field *Field, const struc
 
 int main(int argc, char *argv[])
 {
-	const char *Help = "fens2pgn - converts multiple FENs into single PGN file\n"
+	const char *const Help = "fens2pgn - converts multiple FENs into single PGN file\n"
 	"Syntax: fens2pgn [arguments] [output file] [input file]\n"
 	"Arguments:\n"
 	"  -f    force validity of every chess move\n"
